@@ -57,10 +57,8 @@ private fun passArguments(args: Array<String>) {
         argsParser.printUsage(System.err)
         return
     }
-    val matchingLines = BufferedReader(FileReader(file!!)).use { it1 -> it1.readLines().filter { flagDeterminant(it) }  }
-    if (matchingLines.isEmpty())
-    println("")
-    else
-        println(matchingLines.joinToString(separator = "\r\n"))
-    }
+    val matchingLines = BufferedReader(FileReader(file!!)).use { it1 -> it1.readLines().filter { flagDeterminant(it) } }
+    for (line in matchingLines)
+        println(line)
+}
 }

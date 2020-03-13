@@ -47,7 +47,7 @@ internal class GrepUtilTest {
     @Test
     fun ivParameters() {
         Grep.main(arrayOf("-v", "-i", "ot", "Tests\\Test.txt"))
-        assertEquals("\r\n", output.toString())
+        assertEquals("", output.toString())
     }
     @Test
     fun rvParameters() {
