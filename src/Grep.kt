@@ -1,3 +1,5 @@
+package daniilalexandrov.grep
+
 import java.util.regex.Pattern
 import org.kohsuke.args4j.Option
 import org.kohsuke.args4j.Argument
