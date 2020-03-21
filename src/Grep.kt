@@ -10,13 +10,7 @@ import java.io.File
 import java.io.FileReader
 
 class Grep {
-    companion object {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        Grep().passArguments(args)
-    }
-}
-    @Option(name = "-r", metaVar = "Regex", usage = "Sets a regular expression")
+    @Option(name = "-r", metaVar = "Regex", usage = "Sets a regular expression", forbids = ["-i"])
     private var regex = false
 
     @Option(name = "-v", metaVar = "Invert", usage = "Reverts regex condition")
@@ -49,7 +43,7 @@ private fun flagDeterminant(line: String): Boolean {
     return invert != res
 }
 
-private fun passArguments(args: Array<String>) {
+fun passArguments(args: Array<String>) {
     val argsParser = CmdLineParser(this)
     try {
         argsParser.parseArgument(*args)
