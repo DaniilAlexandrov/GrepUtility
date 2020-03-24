@@ -20,25 +20,20 @@ class Grep {
     private var ignore = false
 
     @Argument(required = true, metaVar = "Word", usage = "Regex word requirement")
-    private var word: String? = null
+    private lateinit var word: String
 
     @Argument(required = true, metaVar = "Document", index = 1, usage = "Document to filter")
-    private var file: File? = null
+    private lateinit var file: File
 
 private fun flagDeterminant(line: String): Boolean {
     val res = if (!regex) {
         if (!ignore)
-            line.contains(word!!)
+            line.contains(word)
         else
-        line.toUpperCase().contains(word!!.toUpperCase())
+        line.toUpperCase().contains(word.toUpperCase())
         } else {
-        val pattern = Pattern.compile(word!!)
-        val matcher = pattern.matcher(line)
-        if (!ignore)
-            matcher.matches()
-        else
-            matcher.matches() || pattern.matcher(line.toUpperCase()).matches() ||
-                    pattern.matcher(line.toLowerCase()).matches()
+        val pattern = Pattern.compile(word)
+        pattern.matcher(line).find()
     }
     return invert != res
 }
@@ -49,11 +44,11 @@ fun passArguments(args: Array<String>) {
         argsParser.parseArgument(*args)
     } catch (e: CmdLineException) {
         println(e.message)
-        println("Required format is: java -jar GrepUtility.jar -v Invert -i Ignore_Register -r Regex word input_name.txt")
+        println("Required format is: java -jar GrepUtility.jar -v -i/-r  Word input_name.txt")
         argsParser.printUsage(System.err)
         return
     }
-    val matchingLines = BufferedReader(FileReader(file!!)).use { it1 -> it1.readLines().filter { flagDeterminant(it) } }
+    val matchingLines = BufferedReader(FileReader(file)).use { it1 -> it1.readLines().filter { flagDeterminant(it) } }
     for (line in matchingLines)
         println(line)
 }
