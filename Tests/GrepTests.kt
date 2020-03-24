@@ -26,34 +26,34 @@ internal class GrepUtilTest {
 
     @Test
     fun noParameters() {
-        Main.main(arrayOf("kotlin", "Tests${pathSeparator}Test.txt"))
+        main(arrayOf("kotlin", "Tests${pathSeparator}Test.txt"))
         assertEquals("kotlin$separator", output.toString())
     }
     @Test
     fun rParameter() {
-        Main.main(arrayOf("-r", "kotlin", "Tests${pathSeparator}Test.txt"))
+        main(arrayOf("-r", "kotlin", "Tests${pathSeparator}Test.txt"))
         assertEquals("kotlin$separator", output.toString())
     }
     @Test
     fun vParameter() {
-        Main.main(arrayOf("-v", "kotlin", "Tests${pathSeparator}Test.txt"))
+        main(arrayOf("-v", "kotlin", "Tests${pathSeparator}Test.txt"))
         assertEquals("Kotlin KOtlin${separator}KOTLIN ${separator}QQotlin${separator}KotlinExemplar${separator}",
                 output.toString())
     }
     @Test
     fun iParameter() {
-        Main.main(arrayOf("-i", "kotlin", "Tests${pathSeparator}Test.txt"))
+        main(arrayOf("-i", "kotlin", "Tests${pathSeparator}Test.txt"))
         assertEquals("Kotlin KOtlin${separator}kotlin${separator}KOTLIN ${separator}KotlinExemplar${separator}",
                 output.toString())
     }
     @Test
     fun ivParameters() {
-        Main.main(arrayOf("-v", "-i", "ot", "Tests${pathSeparator}Test.txt"))
+        main(arrayOf("-v", "-i", "ot", "Tests${pathSeparator}Test.txt"))
         assertEquals("", output.toString())
     }
     @Test
     fun rvParameters() {
-        Main.main(arrayOf("-v", "-r", "kotlin", "Tests${pathSeparator}Test.txt"))
+        main(arrayOf("-v", "-r", "kotlin", "Tests${pathSeparator}Test.txt"))
         assertEquals("Kotlin KOtlin${separator}KOTLIN ${separator}QQotlin${separator}KotlinExemplar$separator",
                 output.toString())
     }
