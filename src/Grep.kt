@@ -6,15 +6,15 @@ import java.io.FileReader
 import java.util.regex.Pattern
 
 class Grep(_file: File, _regex: Boolean, _invert: Boolean, _ignore: Boolean, _word: String) {
-    private var file: File = _file
+    private val file: File = _file
 
-    private var regex = _regex
+    private val regex = _regex
 
-    private var invert = _invert
+    private val invert = _invert
 
-    private var ignore = _ignore
+    private val ignore = _ignore
 
-    private var word: String = _word
+    private val word: String = _word
 
      private fun flagDeterminant(line: String): Boolean {
         val res = if (!regex) {
