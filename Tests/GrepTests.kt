@@ -1,14 +1,13 @@
 package daniilalexandrov.grep
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.PrintStream
 
-internal class GrepUtilTest {
+internal class GrepTest {
 
     private val output = ByteArrayOutputStream()
     private val separator = System.lineSeparator()
@@ -17,11 +16,6 @@ internal class GrepUtilTest {
     @BeforeEach
     fun startStream() {
         System.setOut(PrintStream(output))
-    }
-
-    @AfterEach
-    fun clearStream() {
-        System.setOut(null)
     }
 
     @Test
