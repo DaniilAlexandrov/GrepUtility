@@ -1,4 +1,6 @@
 package daniilalexandrov.grep
     fun main(args: Array<String>) {
-        Logic().passArguments(args)
+        val obj = Logic()
+        obj.passArguments(args)
+        obj.formRepresentation()
 }

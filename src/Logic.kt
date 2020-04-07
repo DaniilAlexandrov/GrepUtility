@@ -16,6 +16,9 @@ class Logic {
     @Option(name = "-i", metaVar = "Ignore", usage = "Ignores passed text's case")
     private var ignore = false
 
+    @Option(name = "-c", metaVar = "Amount", usage = "Returns the amount of output lines")
+    private var count = false
+
     @Argument(required = true, metaVar = "Word", usage = "Regex word requirement")
     private lateinit var word: String
 
@@ -28,10 +31,12 @@ class Logic {
             argsParser.parseArgument(*args)
         } catch (e: CmdLineException) {
             println(e.message)
-            println("Required format is: java -jar GrepUtility.jar -v -i/-r  Word input_name.txt")
+            println("Required format is: java -jar GrepUtility.jar -с -v -i/-r  Word input_name.txt")
             argsParser.printUsage(System.err)
             return
         }
-        Grep(file, regex, invert, ignore, word).findSuitingLines().forEach { println(it) }
+    }
+    fun formRepresentation() {
+        Grep(file, regex, invert, ignore, count, word).formResult()
     }
 }

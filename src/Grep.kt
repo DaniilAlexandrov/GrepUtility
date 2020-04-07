@@ -5,7 +5,7 @@ import java.io.File
 import java.io.FileReader
 import java.util.regex.Pattern
 
-class Grep(_file: File, _regex: Boolean, _invert: Boolean, _ignore: Boolean, _word: String) {
+class Grep(_file: File, _regex: Boolean, _invert: Boolean, _ignore: Boolean, _count: Boolean, _word: String) {
     private val file: File = _file
 
     private val regex = _regex
@@ -13,6 +13,8 @@ class Grep(_file: File, _regex: Boolean, _invert: Boolean, _ignore: Boolean, _wo
     private val invert = _invert
 
     private val ignore = _ignore
+
+    private val count = _count
 
     private val word: String = _word
 
@@ -28,6 +30,10 @@ class Grep(_file: File, _regex: Boolean, _invert: Boolean, _ignore: Boolean, _wo
         }
         return invert != res
     }
-fun findSuitingLines() =
-        BufferedReader(FileReader(file)).use { it1 -> it1.readLines() }.filter { flagDeterminant(it) }
+fun formResult() = if (!count)
+            BufferedReader(FileReader(file)).use { it1 -> it1.readLines() }.
+                    filter { flagDeterminant(it) }.forEach { println(it) }
+else
+            println(BufferedReader(FileReader(file)).use { it1 -> it1.readLines() }.
+                    filter { flagDeterminant(it) }.count())
 }
