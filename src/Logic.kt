@@ -5,6 +5,7 @@ import org.kohsuke.args4j.CmdLineException
 import org.kohsuke.args4j.CmdLineParser
 import org.kohsuke.args4j.Option
 import java.io.File
+import kotlin.system.exitProcess
 
 class Logic {
     @Option(name = "-r", metaVar = "Regex", usage = "Sets a regular expression", forbids = ["-i"])
@@ -33,7 +34,7 @@ class Logic {
             println(e.message)
             println("Required format is: java -jar GrepUtility.jar -с -v -i/-r  Word input_name.txt")
             argsParser.printUsage(System.err)
-            return
+            exitProcess(1)
         }
     }
     fun formRepresentation() {
